@@ -8,8 +8,8 @@ const hotelDataAddedToDBRouter = require("./routes/dataimport.router");
 const categoryDataAddedToDBRouter = require("./routes/categoryimport.router");
 
 const hotelRouter = require("./routes/hotel.router");
-
 const categoryRouter = require("./routes/category.router");
+const singleHotelRouter = require("./routes/singlehotel.router");
 
 const connectDB = require('./config/dbconfig');
 const app = express();
@@ -31,6 +31,7 @@ app.use("/api/hoteldata", hotelDataAddedToDBRouter);//this is usedc to add data 
 app.use("/api/hotels", hotelRouter);
 app.use("/api/categorydata", categoryDataAddedToDBRouter);
 app.use("/api/category", categoryRouter);
+app.use("/api/hotels", singleHotelRouter);
 
 mongoose.connection.once("open", ()=>{
     console.log("connected to the database");

@@ -5,8 +5,11 @@ const dotenv = require("dotenv");
 const cors = require("cors");
 dotenv.config();
 const hotelDataAddedToDBRouter = require("./routes/dataimport.router");
+const categoryDataAddedToDBRouter = require("./routes/categoryimport.router");
+
 const hotelRouter = require("./routes/hotel.router");
 
+const categoryRouter = require("./routes/category.router");
 
 const connectDB = require('./config/dbconfig');
 const app = express();
@@ -25,7 +28,9 @@ app.get("/",(req, res)=>{
 
 
 app.use("/api/hoteldata", hotelDataAddedToDBRouter);//this is usedc to add data to the database
-app.use("/api/hotels", hotelRouter);//the hotels data is used here
+app.use("/api/hotels", hotelRouter);
+app.use("/api/categorydata", categoryDataAddedToDBRouter);
+app.use("/api/category", categoryRouter);
 
 mongoose.connection.once("open", ()=>{
     console.log("connected to the database");

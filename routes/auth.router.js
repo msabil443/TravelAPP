@@ -34,8 +34,9 @@ router.route("/login")//localhost:3500/api/auth/login
             // console.log({decodedPassword});
             decodedPassword!==req.body.password && res.status(401).json({message: "Incorrect Password"});
             const {password, ...rest} = user._doc;
-            const accessToken = jwt.sign({id: user.username}, process.env.ACCESS_TOKEN);
+            const accessToken = jwt.sign({id: user.username}, process.env.ACCESS_TOKEN);//This is an encoded token
             res.json({...rest, accessToken});
+            
         }
         catch(err){
             console.log(err);
